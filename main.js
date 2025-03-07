@@ -1,3 +1,11 @@
+// logout button configuration 
+document.getElementById("logout-btn")
+.addEventListener('click', function(event){
+    event.preventDefault();
+    window.location.href = "./index.html"
+})
+
+
 // All Transection Switcher
 document.getElementById("cashout-container").style.display = "none";
 document.getElementById("transfer-container").style.display = "none";
