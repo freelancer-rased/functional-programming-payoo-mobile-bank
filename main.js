@@ -1,10 +1,10 @@
-// logout button configuration 
-document.getElementById("logout-btn")
-.addEventListener('click', function(event){
+// logout button configuration
+document
+  .getElementById("logout-btn")
+  .addEventListener("click", function (event) {
     event.preventDefault();
-    window.location.href = "./index.html"
-})
-
+    window.location.href = "./index.html";
+  });
 
 // All Transection Switcher
 document.getElementById("cashout-container").style.display = "none";
@@ -164,6 +164,38 @@ document
             `;
         transectionContainer.appendChild(createP);
         document.getElementById("recipient-amount").value = "";
+      } else {
+        alert("Your pin is incorrect");
+      }
+    } else {
+      alert("Your account number is Incorrect");
+    }
+  });
+
+// Pay bill calculation
+document
+  .getElementById("btn-pay-bill")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    const payBillNumber = document.getElementById("pay-bill-number").value;
+    const amountToPay = getElementValueById("amount-to-pay");
+    const payPin = document.getElementById("pay-pin").value;
+    const remainingBalance = getBalanceById("balance");
+
+    if (payBillNumber.length === 11) {
+      if (payPin === "1234") {
+        const minus = remainingBalance - amountToPay;
+        document.getElementById("balance").innerText = minus;
+
+        const transectionContainer = document.getElementById(
+          "transection-container"
+        );
+        const createP = document.createElement("p");
+        createP.innerText = `
+            You have paid bill ${amountToPay} Tk from ${payBillNumber}
+            `;
+        transectionContainer.appendChild(createP);
+        document.getElementById("amount-to-pay").value = "";
       } else {
         alert("Your pin is incorrect");
       }
