@@ -68,3 +68,40 @@ document.getElementById('transection-box')
     document.getElementById('cashout-container').style.display = 'none'
     document.getElementById('add-money-container').style.display ='none'
 })
+
+
+// add money calculation 
+document.getElementById('btn-add-money')
+.addEventListener('click', function(event){
+    event.preventDefault();
+    const bankAccountNumber = document.getElementById('bank-account-number').value;
+    
+    const addAmount = getElementValueById ('add-amount');
+    const getPin = getElementValueByIdWithInt ('pin')
+    const balance = getBalanceById ('balance')
+
+    if (bankAccountNumber.length === 11) {
+
+            if (getPin === 1234){
+                const sum = addAmount + balance;
+                document.getElementById('balance').innerText = sum;
+
+                const transectionContainer = document.getElementById('transection-container');
+                const createP = document.createElement('p');
+                createP.innerText = `
+                You have added ${addAmount} Tk From ${bankAccountNumber}
+                `
+                transectionContainer.appendChild(createP);
+
+                document.getElementById('add-amount').value = ""
+            }
+            else{
+                alert('Your Pin Number is Incorrect')
+            }
+        }
+        
+    
+    else{
+        alert('Your Account Number is Incorrect')
+    }
+})
