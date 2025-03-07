@@ -131,3 +131,35 @@ document
       alert("Your account number is Incorrect");
     }
   });
+
+// Transfer calculation
+document
+  .getElementById("btn-transfer-money")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    const recipientNumber = document.getElementById("recipient-number").value;
+    const amountTransfer = getElementValueById("recipient-amount");
+    const recipientPin = document.getElementById("recipient-pin").value;
+    const transferBalance = getBalanceById("balance");
+
+    if (recipientNumber.length === 11) {
+      if (recipientPin === "1234") {
+        const minus = transferBalance - amountTransfer;
+        document.getElementById("balance").innerText = minus;
+
+        const transectionContainer = document.getElementById(
+          "transection-container"
+        );
+        const createP = document.createElement("p");
+        createP.innerText = `
+            You have transfered ${amountTransfer} Tk from ${recipientNumber}
+            `;
+        transectionContainer.appendChild(createP);
+        document.getElementById("recipient-amount").value = "";
+      } else {
+        alert("Your pin is incorrect");
+      }
+    } else {
+      alert("Your account number is Incorrect");
+    }
+  });
